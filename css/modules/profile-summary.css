@@ -1,0 +1,78 @@
+/********( Index )*************************************************************/
+/*
+	0. CSS Introduction
+    1. Profile Card
+*/
+/********( Introduction )******************************************************/
+/*
+    This file contains all of the style rules for a Summary Profile Card. This 
+    card consists of a name and an optional image. An example of such a card 
+    would be:
+    
+        <div class="profile-summary">
+            <a href="profile.html">
+                <span class="profile-summary__icon">I.N.</span>
+                <span class="profile-summary__name">Initials Name</span>
+            </a>
+        </div>
+        
+    If an image is available, the " has-image" class should be set on the 
+    "profile-summary__icon" element.
+    
+    It is the responsibility of the programmer/site-creator to provide a 
+    background color or image for each card.
+
+*/
+/*=======( Profile Card )=====================================================*/
+    .profile-summary a {
+        text-decoration: inherit;
+        color: inherit;
+    }
+
+    .profile-summary {
+        position: relative;
+        display: inline-block;
+        width: 12em;
+        margin-bottom: 1em;
+        border-bottom: 0.1em solid transparent;
+        text-align: center;
+    }
+    
+    .profile-summary .profile-summary__icon {
+        display: block;
+        height: 4em;
+        width: 4em;
+        margin: 0 auto;
+        border: 0.15em solid transparent;
+        border-radius: 100%;
+        font-size: 2.5em;
+        text-align: center;
+        line-height: 4em;
+        background-origin: border-box;
+        color: rgb(1255, 255, 255);
+    }
+    
+    .profile-summary .profile-summary__icon.has-image {
+        background-color: transparent;
+        background-repeat: no-repeat;
+        background-size: cover;
+        color: rgba(1255, 255, 255, 0);
+    }
+    
+    .profile-summary .profile-summary__name {
+        font-size: 90%;
+    }
+
+    .profile-summary:hover {
+        border-color: rgba(0, 0, 0, 0.2);
+    }
+    
+    .profile-summary:hover .profile-summary__icon {
+        border-color: rgba(0, 0, 0, 0.2);
+    }
+    
+/*EOF*/
+
+
+
+

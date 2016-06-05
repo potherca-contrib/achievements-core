@@ -1,0 +1,196 @@
+/********( Index )*************************************************************/
+/*
+	0. CSS Introduction
+
+	1. General Declarations
+
+    2. Site Navigation
+        2.1. Navigation Header
+        2.2. Navigation Sections
+            2.2.1. Navigation Section Items
+
+    3. Page Header
+        3.1. Page Title
+
+    4. Page Content
+        4.1. Content Area
+
+	5. Helper Classes
+
+*/
+/********( Introduction )******************************************************/
+/*
+    Design consist of the CSS properties that have to do with the visual styling
+    of elements and typography:
+
+    -- Box Model --
+        border
+              -style
+              -color
+
+              -radius
+
+
+              -top
+                  -style
+                  -color
+                  -left-radius
+                  -right-radius
+
+              -right
+                    -style
+                    -color
+
+              -bottom
+                     -style
+                     -color
+                     -left-radius
+                     -right-radius
+
+              -left
+                   -style
+                   -color
+
+        list-style
+                  -position
+                  -type
+                  -image
+
+        table-layout
+        caption-side
+        empty-cells
+
+  -- Typography --
+        font
+            -family
+            -size
+            -style
+            -variant
+            -weight
+
+        line-height
+
+        text-align
+        text-indent
+        text-transform
+        text-decoration
+
+        letter-spacing
+        word-spacing
+        white-space
+        vertical-align
+        
+  -- Color and Images --
+        color
+
+        background
+                  -image
+                  -repeat-x
+                  -repeat-y
+                  -attachment
+                  -position-x
+                  -position-y
+                  -origin
+                  -clip
+                  -color
+
+  -- Other --
+        opacity -- or "filter: alpha(opacity=00);zoom: 1;" for IE5-9
+
+        outline
+        cursor
+
+        content
+        quotes
+
+*/
+/********( Colour Scheme )*****************************************************/
+/*
+    darkblue    = rgb(2, 66, 93)
+    mediumblue  = rgb(4, 79, 110)
+    lightblue   = rgb(4, 88, 124)
+*/
+/*=======( General Declarations )=============================================*/
+
+    body {
+        font-family: 'Asap', sans-serif;
+        background-color: rgb(4, 88, 124);
+    }
+
+/*=======( Site Navigation )==================================================*/
+    menu {
+        color: rgb(100%, 100%, 100%);
+        background-color: rgb(4, 88, 124);
+    }
+
+/*-------( Navigation Header )------------------------------------------------*/
+    menu header a {
+        font-size: 1.75em;
+        font-weight: bold;
+        line-height: 2.67em;
+        text-decoration: none;
+        text-shadow: 
+            1px 4px 6px rgb(4, 88, 124), 
+            0 0 0 #000, 
+            1px 4px 6px rgb(4, 88, 124)
+        ;
+        color: rgba(7, 71, 99, 0.8);
+    }
+
+/*-------( Navigation Sections )----------------------------------------------*/
+    menu h2 {
+        font-size: 100%;
+        text-transform: uppercase;
+        background-color: rgb(2, 66, 93)    ;
+    }
+
+    menu ul > li {
+        list-style-type: none;
+    }
+
+/*.......( Navigation Section Items ).........................................*/
+    menu li li {
+        font-size: 85%;
+        line-height: 2em;
+        text-indent: 2em;
+    }
+
+    menu ul a {
+        text-decoration: none;
+        background-color: rgb(4, 79, 110);
+        color: rgb(100%, 100%, 100%);
+        border-bottom-color: rgb(4, 79, 110); 
+        border-bottom-style: solid; 
+    }
+
+    menu ul a:hover {
+        border-bottom-color: rgb(2, 66, 93);
+        background-color: rgb(4, 88, 124);
+    }
+    
+    menu .is-selected {
+        border-bottom-color: rgb(2, 66, 93);
+        background-color: rgb(4, 88, 124);
+    }
+
+/*=======( Page Content )=====================================================*/
+    main {
+        background-color: rgb(1255, 255, 255);
+        color: rgb(171, 171, 171);
+    }
+
+/*-------( Page Header )-------------------------------------------------------*/
+    main header {
+    }
+
+/*.......( Page Title ).......................................................*/
+    main h1 {
+        font-size: 2.5em;
+    }
+
+/*-------( Content Area )-----------------------------------------------------*/
+
+/*=======( Helper Classes )===================================================*/
+
+/*EOF*/
+
