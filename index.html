@@ -1,84 +1,13 @@
 ---
+layout: default
 ---
-<!doctype html>
-<html lang="en">
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="">
 
-    <title>Working at DealerDirect -- Achievements</title>
-
-    <link href="https://fonts.googleapis.com/css?family=Asap:400,700" rel="stylesheet" type="text/css" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/4.1.1/normalize.min.css" />
-    <link rel="stylesheet" href="css/layout.css" />
-    <link rel="stylesheet" href="css/base-theme.css" />
-    <link rel="stylesheet" href="css/modules/profile-summary.css" />
-    <style>
-        .profile--ben-peachey .profile-summary__icon {background-color:rgb(20, 130, 0); background-image: url(https://gravatar.com/avatar/cc1482b6867895fb0cc52063dc2b60e9?s=800);}
-        .profile--developer-name .profile-summary__icon {background-color:rgb(40, 140, 0);}
-        .profile--longer-developer-name .profile-summary__icon {background-color:rgb(120, 40, 0);}
-        .profile--A-Z .profile-summary__icon {background-color:rgb(0, 255, 0);}
-        .profile--Z-A .profile-summary__icon {background-color:rgb(255, 0, 0);}
-        .profile--A-A .profile-summary__icon {background-color:rgb(0, 0, 0);}
-        .profile--Z-Z .profile-summary__icon {background-color:rgb(255, 255, 0);}
-    </style>
-</head>
-<body>
-    <menu>
-        <header>
-            <a href="index.html">Dealerdirect</a>
-        </header>
-        <ul role="navigation">
-            {% for department in site.data.members.departments %}
-            <li>
-                <h2>{{ department.name }}</h2>
-                <ul>
-                    {% assign members = department.members | sort: 'name' %}
-                    {% for member in members %}
-                    <li><a href="">{{ member.name }}</a></li>
-                    {% endfor %}
-                </ul>
-            </li>
-            {% endfor %}
-        </ul>
-    </menu>
-
-    <main>
-        <header>
-            <h1>Achievements</h1>
-        </header>
-        {% for department in site.data.members.departments %}
-        <section>
-            <h2>{{ department.name }}</h2>
-            {% assign members = department.members | sort: 'name' %}
-            {% for member in members %}
-
-            {% for static_file in site.static_files %}
-                {% if static_file.path == '/img/avatars/' ~ member.name  ~ '.svg'%}
-                    {% assign hasImage = true %}
-                {% endif %}
-            {% endfor %}
-
-            <div class="profile-summary">
-                <a href="_profile.html">
-                    {% if hasImage == true %}
-                    <span class="profile-summary__icon has-image">{{ member.initials }}</span>
-                    {% else %}
-                    <span class="profile-summary__icon">{{ member.initials }}</span>
-                    {% endif %}
-                    <span class="profile-summary__name">{{ member.fullname }}</span>
-                </a>
-            </div>
-            {% endfor %}
-        </section>
+    {% for department in site.data.members.departments %}
+    <section>
+        <h2>{{ department.name }}</h2>
+        {% assign members = department.members | sort: 'name' %}
+        {% for member in members %}
+            {% include profile.html %}
         {% endfor %}
-    </main>
-
-<!--
-    <footer>Footer</footer>
-    <aside>Aside</aside>
--->
-</body>
-</html>
-
+    </section>
+    {% endfor %}
