@@ -1,0 +1,17 @@
+{% capture cache %}
+    {% assign alphabet = "a b c d e f g h i j k l m n o p q r s t u v w x y z" | split: " " %}
+    {% assign initials = include.initials | downcase | split:"." %}
+    {% assign color = "rgb(" %}
+    {% for initial in initials %}
+        {% assign counter = 0 %}
+        {% for letter in alphabet %}
+            {% assign counter =  counter | plus:1 %}
+            {% if initial == letter %}
+                {% assign counter = counter | times:10 %}
+                {% assign color = color | append: counter | append: ", " %}
+                {% break %}
+            {% endif %}
+        {% endfor %}
+    {% endfor %}
+    {% assign color = color | append: "0)" %}
+{% endcapture %}{% assign cache = nil %}{{ color }}
