@@ -79,12 +79,15 @@
 
 /*=======( Profile -- Large )=================================================*/
 .profile--large {
+    text-align: center;
+}
+.profile--large .profile{
     display: block;
     margin: 1em auto;
     width: 100%;
 }
 
-.profile--large .profile-summary__name {
+.profile--large .profile .profile-summary__name {
     font-size: 250%
 }
 /*=======( Profile per Person )===============================================*/
