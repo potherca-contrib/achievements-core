@@ -1,135 +1,44 @@
-<!doctype html>
-<html lang="en">
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="">
+---
+layout: default
+---
 
-    <title>Working at DealerDirect -- Achievements -- Ben Peachey</title>
+{% for department in site.data.members.departments %}
+    {% for currentMember in department.members %}
+        {% if currentMember.fullname == page.member %}
+            {% assign member = currentMember %}
+            {% break %}
+        {% endif %}
+    {% endfor %}
+{% endfor %}
 
-    <link href="https://fonts.googleapis.com/css?family=Asap:400,700" rel="stylesheet" type="text/css" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/4.1.1/normalize.min.css" />
-    <link rel="stylesheet" href="css/layout.css" />
-    <link rel="stylesheet" href="css/base-theme.css" />
-    <link rel="stylesheet" href="css/modules/profile-summary.css" />
-    
-    <style>
-        .profile--ben-peachey .profile-summary__icon {background-color:rgb(20, 130, 0); background-image: url(https://gravatar.com/avatar/cc1482b6867895fb0cc52063dc2b60e9?s=800);}
+<section class="profile--large">
+    {% include profile.html %}
+{%comment%}
+@TODO: Add (hidden) form/text that displays line of code that can be used to embed
+   the image that is hovered/clicked on in other sites, like BitBucket (markdown)
+{%endcomment%}
 
-        .profile {
-            display: block;
-            margin: 0 auto;
-        }
-        
-        .achievements li {
-            display: inline-block;
-            margin: 1em;
-        }
+    {{ content }}
 
-        .achievements img {
-            -webkit-filter: grayscale(1);
-            -webkit-filter: grayscale(100%);
-            filter: gray;
-            filter: grayscale(100%);
-        }
-
-        .achievements img:hover {
-            -webkit-filter: none;
-            filter: none;
-        }
-    </style>
-    
-</head>
-<body>
-    <menu>
-        <header>
-            <a href="index.html">Dealerdirect</a>
-        </header>
-        <ul role="navigation">
-            <li>
-                <h2>Developers</h2>
-                <ul>
-                    <li><a href="">Annie</a></li>
-                    <li><a href="">Arjan</a></li>
-                    <li><a href="" class="is-selected">Ben</a></li>
-                    <li><a href="">Daniel</li>
-                    <li><a href="">Gert-Jan</a></li>
-                    <li><a href="">Olav</a></li>
-                </ul>
-            </li>
-            <li>
-                <h2>Designers</h2>
-                <ul>
-                    <li><a href="">Frank</a></li>
-                    <li><a href="">Remon</a></li>
-                </ul>
-            </li>
+    <div class="achievements">
+        <ul>
+        {% for static_file in site.static_files %}
+            {% assign path = static_file.path | split: "/" %}
+            {% if path[2] == "badges" %}
+                {% assign filename = path[4] | replace: '.svg', ''  %}
+                {% assign badge = filename | split: '_' %}
+                {% assign badgeName = badge[1] %}
+                {% assign score = page.achievements[badgeName] %}
+                {% unless site.data.ignoreBadges contains badgeName %}
+                    <li {% if score != 0 %}class="scored"{% endif %}>
+                        <img src="{{ static_file.path }}" />
+                        {% if score != 0 %}
+                        <span class="score">{{ score }}</span>
+                        {% endif %}
+                    </li>
+                {% endunless %}
+            {% endif %}
+        {% endfor %}
         </ul>
-    </menu>
-
-    <main>
-        <header>
-            <h1>Achievements</h1>
-        </header>
-        <section>
-            <div class="profile profile-summary profile--ben-peachey">
-                <a href="_profile.html">
-                    <span class="profile-summary__icon has-image">B.M.</span>
-                    <span class="profile-summary__name">Ben Peachey</span>
-                </a>
-            </div>
-            
-            <div class="achievements">
-                <ul>
-                    <li>
-                        <img src="img/browsercheck.png" />
-                    </li>
-                    <li>
-                        <img src="img/coffeecup.png" />
-                    </li>
-                    <li>
-                        <img src="img/commentplus.png" />
-                    </li>
-                    <li>
-                        <img src="img/dealerdirect.png" />
-                    </li>
-                    <li>
-                        <img src="img/feedbackloop.png" />
-                    </li>
-                    <li>
-                        <img src="img/levellingup.png" />
-                    </li>
-                    <li>
-                        <img src="img/lightbulb.png" />
-                    </li>
-                    <li>
-                        <img src="img/mailheart.png" />
-                    </li>
-                    <li>
-                        <img src="img/pencil.png" />
-                    </li>
-                    <li>
-                        <img src="img/ribbon.png" />
-                    </li>
-                    <li>
-                        <img src="img/securitycheck.png" />
-                    </li>
-                    <li>
-                        <img src="img/smiley.png" />
-                    </li>
-                    <li>
-                        <img src="img/thumbup.png" />
-                    </li>
-                    <li>
-                        <img src="img/ten.png" />
-                    </li>
-                    <li>
-                        <img src="img/twentyfive.png" />
-                    </li>
-                </ul>
-            </div>
-        </section>
-    </main>
-</body>
-</html>
-
+    </div>
+</section>
