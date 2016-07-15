@@ -31,7 +31,7 @@ layout: default
                 {% assign score = page.achievements[badgeName] %}
                 {% unless site.data.ignoreBadges contains badgeName %}
                     <li {% if score != 0 %}class="scored"{% endif %}>
-                        <img src="{{ static_file.path }}" />
+                        <img src="{{ static_file.path | prepend: site.baseurl }}" />
                         {% if score != 0 %}
                         <span class="score">{{ score }}</span>
                         {% endif %}

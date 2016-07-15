@@ -1,6 +1,6 @@
     <menu>
         <header>
-            <a href="/">Dealerdirect</a>
+            <a href="{{ site.baseurl }}/">Dealerdirect</a>
         </header>
         <ul role="navigation">
             {% for department in site.data.members.departments %}
@@ -9,7 +9,7 @@
                 <ul>
                     {% assign members = department.members | sort: 'name' %}
                     {% for member in members %}
-                    <li><a href="/profiles/{{ member.fullname | downcase | replace: ' ', '-' }}/">{{ member.name }}</a></li>
+                    <li><a href="{{ site.baseurl }}/profiles/{{ member.fullname | downcase | replace: ' ', '-' }}/">{{ member.name }}</a></li>
                     {% endfor %}
                 </ul>
             </li>

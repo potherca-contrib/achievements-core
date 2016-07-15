@@ -100,7 +100,7 @@
         {% for static_file in site.static_files %}
             {% assign filePath = '/img/avatars/svg/' | append: member.name | append: '.svg' | downcase %}
             {% if static_file.path == filePath %}
-        background-image: url({{filePath}});
+        background-image: url({{ filePath | prepend: site.baseurl}});
         background-color: transparent;
         color: rgba(1255, 255, 255, 0);
                 {% break %}
