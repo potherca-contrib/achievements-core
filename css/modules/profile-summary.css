@@ -1,7 +1,11 @@
+---
+---
 /********( Index )*************************************************************/
 /*
-	0. CSS Introduction
+    0. CSS Introduction
     1. Profile Card
+    2. Profile -- Large
+    3. Profile per Person
 */
 /********( Introduction )******************************************************/
 /*
@@ -36,6 +40,7 @@
         margin-bottom: 1em;
         border-bottom: 0.1em solid transparent;
         text-align: center;
+        transition: border 0.85s;
     }
     
     .profile-summary .profile-summary__icon {
@@ -49,13 +54,14 @@
         text-align: center;
         line-height: 4em;
         background-origin: border-box;
-        color: rgb(1255, 255, 255);
-    }
-    
-    .profile-summary .profile-summary__icon.has-image {
-        background-color: transparent;
         background-repeat: no-repeat;
         background-size: cover;
+        color: rgb(1255, 255, 255);
+        transition: border 0.85s;
+    }
+
+    .profile-summary .profile-summary__icon.has-image {
+        background-color: transparent;
         color: rgba(1255, 255, 255, 0);
     }
     
@@ -70,9 +76,38 @@
     .profile-summary:hover .profile-summary__icon {
         border-color: rgba(0, 0, 0, 0.2);
     }
+
+/*=======( Profile -- Large )=================================================*/
+.profile--large {
+    text-align: center;
+}
+.profile--large .profile{
+    display: block;
+    margin: 1em auto;
+    width: 100%;
+}
+
+.profile--large .profile .profile-summary__name {
+    font-size: 250%
+}
+/*=======( Profile per Person )===============================================*/
+
+{% for department in site.data.members.departments %}
+    {% assign members = department.members | sort: 'name' %}
+    {% for member in members %}
+    .profile--{{ member.fullname | downcase | replace: ' ', '-' }} .profile-summary__icon {
+        background-color:{% include color-from-initials.lqd initials=member.initials %};
+        {% for static_file in site.static_files %}
+            {% assign filePath = '/img/avatars/svg/' | append: member.name | append: '.svg' | downcase %}
+            {% if static_file.path == filePath %}
+        background-image: url({{ filePath | prepend: site.baseurl}});
+        background-color: transparent;
+        color: rgba(1255, 255, 255, 0);
+                {% break %}
+            {% endif %}
+        {% endfor %}
+    }
+    {% endfor %}
+{% endfor %}
     
 /*EOF*/
-
-
-
-

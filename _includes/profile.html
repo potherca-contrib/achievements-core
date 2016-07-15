@@ -1,0 +1,8 @@
+<div class="profile-summary profile profile--{{ member.fullname | downcase | replace: ' ', '-' }}">
+    <a href="{{ site.baseurl }}/profiles/{{ member.fullname | downcase | replace: ' ', '-' }}/">
+        <span class="profile-summary__icon">
+            {{ member.initials }}
+        </span>
+        <span class="profile-summary__name">{{ member.fullname }}</span>
+    </a>
+</div>
