@@ -1,8 +1,17 @@
-<div class="profile-summary profile profile--{{ member.fullname | downcase | replace: ' ', '-' }}">
-    <a href="{{ site.baseurl }}/profiles/{{ member.fullname | downcase | replace: ' ', '-' }}/">
+{% capture slug %}{% include slug-from-member.lqd %}{% endcapture %}
+<div class="profile profile-summary profile--{{ slug }}{% if highscorers contains slug %} winner{% endif %}">
+    <a href="{{ site.baseurl }}/profiles/{{ slug }}/">
         <span class="profile-summary__icon">
             {{ member.initials }}
         </span>
+
+        <span class="profile-summary__score">
+            <span class="score">
+            {% include calculate-score-for-member.lqd %}
+            {{ score }}
+            </span>
+        </span>
+
         <span class="profile-summary__name">{{ member.fullname }}</span>
     </a>
 </div>
