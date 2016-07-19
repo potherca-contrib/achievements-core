@@ -1,13 +1,14 @@
 ---
-layout: default
+layout: profile-list
 ---
+{% include calculate-highscores.lqd %}
 
-    {% for department in site.data.members.departments %}
-    <section>
-        <h2>{{ department.name }}</h2>
-        {% assign members = department.members | sort: 'name' %}
-        {% for member in members %}
-            {% include profile.html %}
-        {% endfor %}
-    </section>
+{% for department in site.data.members.departments %}
+<section>
+    <h2>{{ department.name }}</h2>
+    {% assign members = department.members | sort: 'name' %}
+    {% for member in members %}
+        {% include profile.html %}
     {% endfor %}
+</section>
+{% endfor %}
