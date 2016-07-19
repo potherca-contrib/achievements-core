@@ -1,0 +1,12 @@
+{% capture cache %}
+    {% include list-all-badges.lqd %}
+
+    {% for profile in site.profiles %}
+        {% if member.fullname == profile.member %}
+            {% assign score = 0 %}
+            {% for badgeName in badges %}
+                {% assign score = score | plus: profile.achievements[badgeName] %}
+            {% endfor %}
+        {% endif %}
+    {% endfor %}
+{% endcapture %}{% assign cache = nil %}
