@@ -36,13 +36,13 @@
     .profile-summary {
         position: relative;
         display: inline-block;
-        width: 12em;
-        margin-bottom: 1em;
+        margin: 1em 0.35;
         border-bottom: 0.1em solid transparent;
         text-align: center;
         transition: border 0.85s;
     }
     
+    .profile-summary .profile-summary__score,
     .profile-summary .profile-summary__icon {
         display: block;
         height: 4em;
@@ -64,7 +64,7 @@
         background-color: transparent;
         color: rgba(1255, 255, 255, 0);
     }
-    
+
     .profile-summary .profile-summary__name {
         font-size: 90%;
     }
@@ -95,7 +95,8 @@
 {% for department in site.data.members.departments %}
     {% assign members = department.members | sort: 'name' %}
     {% for member in members %}
-    .profile--{{ member.fullname | downcase | replace: ' ', '-' }} .profile-summary__icon {
+    {% capture slug %}{% include slug-from-member.lqd %}{% endcapture %}
+    .profile--{{ slug }} .profile-summary__icon {
         background-color:{% include color-from-initials.lqd initials=member.initials %};
         {% for static_file in site.static_files %}
             {% assign filePath = '/img/avatars/svg/' | append: member.name | append: '.svg' | downcase %}
