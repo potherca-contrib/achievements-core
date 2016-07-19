@@ -4,6 +4,11 @@
 /*
     0. CSS Introduction
     1. Profile Card
+        1.1. Profile Icon
+        1.1.1 Winners
+        1.2. Profile Name
+        1.3. High Score
+        1.4. Hover States
     2. Profile -- Large
     3. Profile per Person
 */
@@ -28,22 +33,30 @@
 
 */
 /*=======( Profile Card )=====================================================*/
+    .profile-summary {
+        position: relative;
+        display: inline-block;
+        height: 12em;
+        margin: 1em;
+        border-bottom: 0.1em solid transparent;
+        text-align: center;
+        transform-style: preserve-3d;
+        transition: border 0.85s, transform 0.85s;
+    }
+    
     .profile-summary a {
         text-decoration: inherit;
         color: inherit;
     }
 
-    .profile-summary {
-        position: relative;
-        display: inline-block;
-        margin: 1em 0.35;
-        border-bottom: 0.1em solid transparent;
-        text-align: center;
-        transition: border 0.85s;
+/*-------( Profile Icon  )----------------------------------------------------*/
+    .profile-summary__icon {
+        position: absolute;
+        top: 0;
     }
-    
-    .profile-summary .profile-summary__score,
-    .profile-summary .profile-summary__icon {
+
+    .profile-summary__score,
+    .profile-summary__icon {
         display: block;
         height: 4em;
         width: 4em;
@@ -57,39 +70,84 @@
         background-repeat: no-repeat;
         background-size: cover;
         color: rgb(1255, 255, 255);
-        transition: border 0.85s;
     }
 
-    .profile-summary .profile-summary__icon.has-image {
+    .profile-summary__icon.has-image {
         background-color: transparent;
         color: rgba(1255, 255, 255, 0);
     }
 
-    .profile-summary .profile-summary__name {
-        font-size: 90%;
+
+/* - - - ( Winners ) - - - - - - - - - - - - - - - - - - - - - - - - - - - - -*/
+    .profile-summary.winner .profile-summary__icon {
+        box-shadow: 0 0 1em gold, 0 0 0.35em gold;
     }
 
+/*-------( Profile Name  )----------------------------------------------------*/
+    .profile-summary__name {
+        position: absolute;
+        left: 0;
+        bottom: 0;
+        width: 100%;
+        font-size: 90%;
+        text-align: center;
+        backface-visibility: hidden;
+    }
+
+/*-------( High Score )-------------------------------------------------------*/
+    .profile-summary__score {
+        margin: 0;
+        background-image: none;
+        transform: rotateY( 180deg );
+        background-color: rgba(255,255,255,0.9);
+    }
+
+    .profile-summary__score .score {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        font-size: 200%;
+        font-weight: bold;
+        color: black;
+        text-shadow:
+            white 0 0 1px,
+            white 0 0 10px,
+            white 0 0 0.1em,
+            white 0 0 1em
+        ;
+        text-align: center;
+    }
+
+/*-------( Hover States )-------------------------------------------------------*/
     .profile-summary:hover {
         border-color: rgba(0, 0, 0, 0.2);
+        transform: rotateY( -180deg );
     }
-    
+
     .profile-summary:hover .profile-summary__icon {
-        border-color: rgba(0, 0, 0, 0.2);
+        /*border-color: rgba(0, 0, 0, 0.2);*/
+    }
+
+    .profile-summary:hover .profile-summary__name {
+        transform: rotateY( -180deg);
     }
 
 /*=======( Profile -- Large )=================================================*/
-.profile--large {
-    text-align: center;
-}
-.profile--large .profile{
-    display: block;
-    margin: 1em auto;
-    width: 100%;
-}
+    .profile--large {
+        text-align: center;
+    }
 
-.profile--large .profile .profile-summary__name {
-    font-size: 250%
-}
+    .profile--large .profile {
+        display: block;
+        margin: 1em auto;
+        width: 100%;
+    }
+
+    .profile--large .profile .profile-summary__name {
+        font-size: 250%
+    }
 /*=======( Profile per Person )===============================================*/
 
 {% for department in site.data.members.departments %}
