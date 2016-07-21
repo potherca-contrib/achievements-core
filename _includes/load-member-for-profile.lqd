@@ -1,0 +1,10 @@
+{% capture cache %}
+    {% for department in site.data.members.departments %}
+        {% for currentMember in department.members %}
+            {% if currentMember.fullname == page.member %}
+                {% assign member = currentMember %}
+                {% break %}
+            {% endif %}
+        {% endfor %}
+    {% endfor %}
+{% endcapture %}{% assign cache = nil %}

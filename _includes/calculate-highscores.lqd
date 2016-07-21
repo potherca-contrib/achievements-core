@@ -1,0 +1,29 @@
+{% capture cache %}
+    {% include list-all-badges.lqd %}
+    
+    {% assign highscore = 0 %}
+    {% assign highscorers = "" | split: "," %}
+    
+    {% for department in site.data.members.departments %}
+        {% for member in department.members %}
+            {% for profile in site.profiles %}
+    
+                {% if member.fullname == profile.member %}
+                    {% assign score = 0 %}
+                    {% for badgeName in badges %}
+                        {% assign score = score | plus: profile.achievements[badgeName] %}
+                    {% endfor %}
+                    {% capture slug %}{% include slug-from-member.lqd %}{% endcapture %}
+    
+                    {% if score > highscore %}
+                        {% assign highscore = score %}
+                        {% assign highscorers = "" | split: "," %}
+                        {% assign highscorers = highscorers | push: slug %}
+                    {% elsif score == highscore %}
+                        {% assign highscorers = highscorers | push: slug %}
+                    {% endif %}
+                {% endif %}
+            {% endfor %}
+        {% endfor %}
+    {% endfor %}
+{% endcapture %}{% assign cache = nil %}
