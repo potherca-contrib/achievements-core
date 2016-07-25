@@ -1,15 +1,8 @@
 ---
-layout: default
+layout: profile-list
 ---
 
-{% for department in site.data.members.departments %}
-    {% for currentMember in department.members %}
-        {% if currentMember.fullname == page.member %}
-            {% assign member = currentMember %}
-            {% break %}
-        {% endif %}
-    {% endfor %}
-{% endfor %}
+{% include load-member-for-profile.lqd %}
 
 <section class="profile--large">
     {% include profile.html %}

@@ -1,0 +1,15 @@
+{% capture cache %}
+    {% assign badges = "" | split: "," %}
+
+    {% for static_file in site.static_files %}
+        {% assign path = static_file.path | split: "/" %}
+        {% if path[2] == "badges" %}
+            {% assign filename = path[4] | replace: '.svg', ''  %}
+            {% assign badge = filename | split: '_' %}
+            {% assign badgeName = badge[1] %}
+            {% unless site.data.ignoreBadges contains badgeName %}
+                {% assign badges = badges | push: badgeName %}
+            {% endunless %}
+        {% endif %}
+    {% endfor %}
+{% endcapture %}{% assign cache = nil %}
