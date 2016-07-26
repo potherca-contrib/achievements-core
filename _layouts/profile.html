@@ -3,6 +3,7 @@ layout: profile-list
 ---
 
 {% include load-member-for-profile.lqd %}
+{% include list-all-badges.lqd %}
 
 <section class="profile--large">
     {% include profile.html %}
@@ -15,22 +16,14 @@ layout: profile-list
 
     <div class="achievements">
         <ul>
-        {% for static_file in site.static_files %}
-            {% assign path = static_file.path | split: "/" %}
-            {% if path[2] == "badges" && path[3] == "svg" %}
-                {% assign filename = path[4] | replace: '.svg', ''  %}
-                {% assign badge = filename | split: '_' %}
-                {% assign badgeName = badge[1] %}
-                {% assign score = page.achievements[badgeName] %}
-                {% unless site.data.ignoreBadges contains badgeName %}
-                    <li {% if score != 0 %}class="scored"{% endif %}>
-                        <img src="{{ static_file.path | prepend: site.baseurl }}" />
-                        {% if score != 0 %}
-                        <span class="score">{{ score }}</span>
-                        {% endif %}
-                    </li>
-                {% endunless %}
-            {% endif %}
+        {% for badgeName in badges %}
+            {% assign score = page.achievements[badgeName] %}
+            <li {% if score != 0 %}class="scored"{% endif %}>
+                <img src="{{ site.baseurl }}/img/badges/svg/badge_{{ badgeName }}.svg" />
+                {% if score != 0 %}
+                <span class="score">{{ score }}</span>
+                {% endif %}
+            </li>
         {% endfor %}
         </ul>
     </div>
