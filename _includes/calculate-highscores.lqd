@@ -1,7 +1,7 @@
 {% capture cache %}
     {% include list-all-badges.lqd %}
     
-    {% assign highscore = 0 %}
+    {% assign highscore = 1 %}
     {% assign highscorers = "" | split: "," %}
     
     {% for department in site.data.members.departments %}
