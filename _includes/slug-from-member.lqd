@@ -1,1 +1,7 @@
-{{ member.fullname | downcase | replace: ' ', '-' }}
+{% capture cache %}
+    {%if include.member %}
+        {% assign memberName = include.member %}
+    {%elsif member.fullname %}
+        {% assign memberName = member.fullname %}
+    {%endif%}
+{% endcapture %}{% assign cache = nil %}{{ memberName | downcase | replace: ' ', '-' }}

@@ -1,4 +1,5 @@
 {% capture slug %}{% include slug-from-member.lqd %}{% endcapture %}
+{% include calculate-score-for-member.lqd slug=slug %}
 <div class="profile profile-summary profile--{{ slug }}{% if highscorers contains slug %} winner{% endif %}">
     <a href="{{ site.baseurl }}/profiles/{{ slug }}/">
         <span class="profile-summary__icon">
@@ -7,7 +8,6 @@
 
         <span class="profile-summary__score">
             <span class="score">
-            {% include calculate-score-for-member.lqd %}
             {{ score }}
             </span>
         </span>
