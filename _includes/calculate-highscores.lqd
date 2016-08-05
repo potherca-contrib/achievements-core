@@ -1,14 +1,16 @@
 {% capture cache %}
     {% include list-all-badges.lqd %}
     
-    {% assign highscore = 0 %}
+    {% assign highscore = 1 %}
     {% assign highscorers = "" | split: "," %}
     
     {% for department in site.data.members.departments %}
         {% for member in department.members %}
             {% for profile in site.profiles %}
     
-                {% if member.fullname == profile.member %}
+                {% capture memberSlug %}{% include slug-from-member.lqd member=member.fullname %}{% endcapture %}
+                {% capture profileSlug %}{% include slug-from-page.lqd pagePath=profile.path %}{% endcapture %}
+                {% if profileSlug == memberSlug %}
                     {% assign score = 0 %}
                     {% for badgeName in badges %}
                         {% assign score = score | plus: profile.achievements[badgeName] %}

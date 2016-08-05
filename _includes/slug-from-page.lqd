@@ -1,0 +1,3 @@
+{% capture cache %}
+    {% assign slug = include.pagePath | split: '/' | last | split: '.' | first %}
+{% endcapture %}{% assign cache = nil %}{{ slug }}
