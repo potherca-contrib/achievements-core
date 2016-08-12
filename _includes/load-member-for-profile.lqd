@@ -1,10 +1,16 @@
 {% capture cache %}
+    {% capture slug %}{% include slug-from-page.lqd  pagePath=page.path %}{% endcapture %}
+
     {% for department in site.data.members.departments %}
-        {% for currentMember in department.members %}
-            {% if currentMember.fullname == page.member %}
-                {% assign member = currentMember %}
-                {% break %}
-            {% endif %}
-        {% endfor %}
+        {% if found != true %}
+            {% for currentMember in department.members %}
+                {% capture currentSlug %}{% include slug-from-member.lqd member=currentMember.fullname %}{% endcapture %}
+                {% if currentSlug == slug %}
+                    {% assign member = currentMember %}
+                    {% assign found = true %}
+                    {% break %}
+                {% endif %}
+            {% endfor %}
+        {% endif %}
     {% endfor %}
 {% endcapture %}{% assign cache = nil %}

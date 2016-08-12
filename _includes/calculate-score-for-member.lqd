@@ -2,11 +2,14 @@
     {% include list-all-badges.lqd %}
 
     {% for profile in site.profiles %}
-        {% if member.fullname == profile.member %}
+        {% capture currentSlug %}{% include slug-from-page.lqd pagePath=profile.path %}{% endcapture %}
+        {% if include.slug == currentSlug %}
             {% assign score = 0 %}
             {% for badgeName in badges %}
                 {% assign score = score | plus: profile.achievements[badgeName] %}
             {% endfor %}
+            {% assign found = true %}
+            {% break %}
         {% endif %}
     {% endfor %}
 {% endcapture %}{% assign cache = nil %}
