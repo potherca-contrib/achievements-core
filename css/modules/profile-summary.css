@@ -121,15 +121,18 @@
     }
 
 /*-------( Hover States )-------------------------------------------------------*/
+    .show-all-scores .profile-summary,
     .profile-summary:hover {
         border-color: rgba(0, 0, 0, 0.2);
         transform: rotateY( -180deg );
     }
 
+    .show-all-scores .profile-summary .profile-summary__icon,
     .profile-summary:hover .profile-summary__icon {
         /*border-color: rgba(0, 0, 0, 0.2);*/
     }
 
+    .show-all-scores .profile-summary .profile-summary__name,
     .profile-summary:hover .profile-summary__name {
         transform: rotateY( -180deg);
     }
